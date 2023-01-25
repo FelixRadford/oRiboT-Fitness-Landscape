@@ -1,5 +1,5 @@
 # Generate a matrix of pairwise epistasis for all fAB, fA, and fB values
-# (C) Felix Radford, 2022
+# Felix Radford, 2022
 
 import itertools
 import pandas as pd
