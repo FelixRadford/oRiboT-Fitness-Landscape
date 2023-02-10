@@ -33,7 +33,7 @@ Fitness of each ribosome mutant was calculated by the following equation: f(A) =
 
 We quantified the flexibility to mutation at each position in the population by computing the [Shannon entropy](https://onlinelibrary.wiley.com/doi/10.1002/j.1538-7305.1948.tb01338.x). Running entropy_all_positions.py calculates the entropy at each position in the library. 
 
-We calculated epistasis for each PTC library using epistasis_matrix.py. Epistasis was calculated based on a [previous work](https://pubmed.ncbi.nlm.nih.gov/27080104/)analyzing the epistasis between the bases of an RNA element according to the following equation: ε = f(ABi) – f(Ai)*f(Bi), where ε is the epistasis, f(A) is the fitness of point mutant with point mutation A, f(B) is the fitness of point mutant with point mutation B, and f(AB) is the fitness of a mutant having both mutations A and B.
+We calculated epistasis for each PTC library using epistasis_matrix.py. Epistasis was calculated based on a [previous work](https://pubmed.ncbi.nlm.nih.gov/27080104/) analyzing the epistasis between the bases of an RNA element according to the following equation: ε = f(ABi) – f(Ai)*f(Bi), where ε is the epistasis, f(A) is the fitness of point mutant with point mutation A, f(B) is the fitness of point mutant with point mutation B, and f(AB) is the fitness of a mutant having both mutations A and B.
 
 ## Authors
 
