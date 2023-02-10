@@ -1,19 +1,17 @@
 # Generate a matrix of pairwise epistasis for all fAB, fA, and fB values
-# Felix Radford, 2022
+# Authored by Felix Radford, 2022
 
 import itertools
 import pandas as pd
 import csv
 
 
-WT = "AAAGA"              # input WT sequence for this PTC region
+WT = "ATGTC"              # input WT sequence for this region
 
 
 
 
-# open csv file with all sequences and their frequencies, from positive, neutral, and negative selections.
-
-#positive 
+# open csv file with all sequences and their frequencies. Put positives into pd.dataframe from csv file in "Positives/"
 
 df_pos = pd.read_csv ('Positive/dict.csv', header=None) #reads CSV for positives matrix, first row starts at 0
 
@@ -38,16 +36,13 @@ Neg_norm = df_neg
 Neg_norm[1] = Neg_norm[1].sub(df_neutr[1])
 
 
-
 # Obtain fitness by subtracting negatives from neutral and multiplying by 100
 
 Mutants_fitness_matrix = Pos_norm
 Mutants_fitness_matrix[1]  = Pos_norm[1].div(Neg_norm[1])    #subtract negative matrix from positive matrix
 
 
-
-
-Mutants_fitness_matrix.to_csv('A_Mutants_fitness_matrix_all.csv', index=False, header=None)
+Mutants_fitness_matrix.to_csv('D1_Mutants_fitness_matrix_all_V2.csv', index=False, header=None)
 
 
 
@@ -124,8 +119,8 @@ def Ep_e1_3():
 		elif AB[2] == WT[2]:
 			e1_3.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])        
 			A = i[:1] + WT[1:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:2] + i[1:] +  WT[3:5]
@@ -146,8 +141,8 @@ def Ep_e1_4():
 		elif AB[3] == WT[3]:
 			e1_4.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])        
 			A = i[:1] + WT[1:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:3] + i[1:] +  WT[4]
@@ -168,7 +163,7 @@ def Ep_e1_5():
 		elif AB[4] == WT[4]:
 			e1_5.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe     
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]           
 			A = i[:1] + WT[1:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:4] + i[1:]
@@ -191,8 +186,8 @@ def Ep_e2_3():
 		elif AB[2] == WT[2]:
 			e2_3.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])       
 			A = WT[0] + i[:1] + WT[2:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:2] + i[1:] + WT[3:5]
@@ -213,8 +208,8 @@ def Ep_e2_4():
 		elif AB[3] == WT[3]:
 			e2_4.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])        
 			A = WT[0] + i[:1] + WT[2:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:3] + i[1:] + WT[4]
@@ -235,8 +230,8 @@ def Ep_e2_5():
 		elif AB[4] == WT[4]:
 			e2_5.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])        
 			A = WT[0] + i[:1] + WT[2:5] 
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:4] + i[1:]   
@@ -257,8 +252,8 @@ def Ep_e3_4():
 		elif AB[3] == WT[3]:
 			e3_4.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])       
 			A = WT[0:2] + i[:1] + WT[3:5] 
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B =  WT[0:3] + i[1:] + WT[4]
@@ -279,8 +274,8 @@ def Ep_e3_5():
 		elif AB[4] == WT[4]:
 			e3_5.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      
+			f_AB = float(dual_fitness[1].values[0])        
 			A = WT[0:2] + i[:1] + WT[3:5]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
 			B = WT[0:4] + i[1:]  
@@ -302,12 +297,14 @@ def Ep_e4_5():
 		elif AB[4] == WT[4]:
 			e4_5.append(s)
 		else:
-			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]      # search for sequence in dataframe
-			f_AB = float(dual_fitness[1].values[0])       # value of fitness corresponding to the sequence found and outputted as float
+			dual_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(AB)]       
+			f_AB = float(dual_fitness[1].values[0])        
 			A =  WT[0:3] + i[:1] + WT[4]
 			A_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)] 
-			B = WT[0:4] + i[1:]   
+			print(A_fitness)
+			B = WT[0:4] + i[1:]  
 			B_fitness = Mutants_fitness_matrix[Mutants_fitness_matrix[0].str.contains(A)]
+			print(B_fitness)
 			if len(A_fitness) > 0 and len(B_fitness) > 0 and len(dual_fitness) > 0:
 				f_A = float(A_fitness[1].values[0])        
 				f_B = float(B_fitness[1].values[0])
@@ -353,7 +350,7 @@ row20 = [e1_5[3], e1_5[7], e1_5[11], e1_5[15], e2_5[3], e2_5[7], e2_5[11], e2_5[
 
  
 
-with open('A_epistasis_all.csv', 'w') as csvFile:
+with open('epistasis_all.csv', 'w') as csvFile:
     writer = csv.writer(csvFile)
     writer.writerows([row1])
     writer.writerows([row2])
