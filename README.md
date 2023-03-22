@@ -2,7 +2,7 @@
 
 Python scripts used for the publication 
 **Mapping the in vivo fitness landscape of a tethered ribosome** 
-by Felix Radford, Jess Rinehart, and Farren J. Isaacs.
+by Felix Radford, Jesse Rinehart, and Farren J. Isaacs.
 
 
 ## Table of Contents
